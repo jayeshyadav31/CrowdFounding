@@ -1,8 +1,9 @@
 import Router from 'express'
-import { createCampaign, deleteCampaign, getCampaign, updateCampaign } from '../controller/campaignController'
+import { createCampaign, deleteCampaign, getCampaign, updateCampaign } from '../controller/campaignController.js'
+import verifyJwt from '../middleware/authMiddleware.js';
 const router=Router()
-router.post('/create',createCampaign);
-router.post('/update',updateCampaign)
-router.get('/get',getCampaign)
-router.delete('/delete',deleteCampaign)
+router.post('/create',verifyJwt,createCampaign);
+router.post('/update',verifyJwt,updateCampaign)
+router.get('/get/:id',verifyJwt,getCampaign)
+router.delete('/delete',verifyJwt,deleteCampaign)
 export default router;

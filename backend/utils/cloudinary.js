@@ -1,6 +1,11 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
 
+cloudinary.config({ 
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
 const uploadToCloudinary = async (localFilePath) => {
     if (!localFilePath) {
         console.error('Local file path is missing');
@@ -14,7 +19,7 @@ const uploadToCloudinary = async (localFilePath) => {
             timeout: 600000,
         });
 
-        fs.unlinkSync(localFilePath); // Delete the file after successful upload
+        fs.unlinkSync(localFilePath);
         return file;
     } catch (error) {
         console.error(`Error in uploading file to Cloudinary: ${error.message}`);

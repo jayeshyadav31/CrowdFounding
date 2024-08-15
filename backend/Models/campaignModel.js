@@ -10,7 +10,6 @@ const CampaignSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, "Please give a description"],
   },
   imageUrl: {
     type: String,

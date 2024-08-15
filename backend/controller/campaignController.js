@@ -4,7 +4,8 @@ import { v2 as cloudinary } from 'cloudinary';
 
 const createCampaign = async (req, res) => {
     const { title, subTitle, description, required, imageUrl, start} = req.body;
-
+    console.log("i am at create campaign");
+    
     try {
         let uploadedImageUrl = imageUrl;
 

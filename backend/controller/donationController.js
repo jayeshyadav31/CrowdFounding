@@ -3,7 +3,8 @@ import Campaign from "../Models/campaignModel.js";
 
 const createDonation = async (req, res) => {
     const { amount, transactionComplete, transactionID, campaignId } = req.body;
-
+    console.log(req.body);
+    
     try {
         const userId=req.user._id
         const campaignExists = await Campaign.findById(campaignId);
@@ -42,7 +43,7 @@ const getDonationDetails = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const donation = await Donation.findById(id).populate('userId').populate('campaign');
+        const donation = await Donation.findById(id).populate('userId').populate('campaignId');
 
         if (!donation) {
             return res.status(404).json({ message: 'Donation not found' });

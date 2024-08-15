@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const DonationSchema = mongoose.Schema({
@@ -19,7 +19,7 @@ const DonationSchema = mongoose.Schema({
     type: String,
     default: "",
   },
-  campaign: {
+  campaignId: {
     type: Schema.Types.ObjectId,
     required:true,
     ref: "Campaign",
@@ -28,4 +28,4 @@ const DonationSchema = mongoose.Schema({
 
 const Donation = mongoose.model("Donation", DonationSchema);
 
-module.exports = Donation;
+export default Donation;

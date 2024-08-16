@@ -18,7 +18,7 @@ const signUpUser = async (req, res, next) => {
         const createdUser = await User.findById(user._id).select("-password");
 
         if (!createdUser) {
-            throw new ApiError(500, "Something went wrong while registering the user");
+            throw new Error(500, "Something went wrong while registering the user");
         }
 
         const accessToken = user.generateAccessToken();
@@ -32,7 +32,7 @@ const signUpUser = async (req, res, next) => {
         });
     } catch (error) {
         console.error(`Error in signUpUser: ${error.message}`);
-        next(new ApiError(500, `Error in signing up user: ${error.message}`));
+        return res.status(500).json({ message: "Error in signing up user", error: error.message });
     }
 };
 
@@ -42,7 +42,7 @@ const loginUser = async (req, res, next) => {
         console.log("Received request to log in user with username:", username);
 
         if (!username || !password) {
-            throw new ApiError(400, "All fields are required");
+            throw new Error(400, "All fields are required");
         }
 
         const user = await User.findOne({ username });
@@ -66,7 +66,7 @@ const loginUser = async (req, res, next) => {
         });
     } catch (error) {
         console.error(`Error in loginUser: ${error.message}`);
-        next(new ApiError(500, `Error in logging in user: ${error.message}`));
+        return res.status(500).json({ message: "Error in logging in user", error: error.message });
     }
 };
 const updateUser=async(req,res)=>{
@@ -118,6 +118,7 @@ const updateUser=async(req,res)=>{
         }
     } catch (error) {
         console.log(`error in the update user ${error.message}`);
+        return res.status(500).json({ message: "Error in updating user", error: error.message });
     }
 }
 const logoutUser = async (req, res) => {
@@ -137,20 +138,25 @@ const logoutUser = async (req, res) => {
 };
 const updateProfilePic =async(req,res)=>{
     try {
-        let file=req.file?.path
-        console.log(file);
-        if(!file){
+        console.log("i am at update user profile pic");
+        
+        const {profilePic}=req.body
+        if(!profilePic){
             return res.status(401).json("ProfilePic Not Found")
         }
-        const response=await uploadToCloudinary(file)
+        const response=await uploadToCloudinary(profilePic)
+        // console.log(response.secure_url);
+        
         const user=await User.findById(req.user._id)
+        
         user.profilePic=response.secure_url
-        console.log(user);
+        // console.log(user.profilePic);
+        
         await user.save()
         return res.status(200).json({"profilePic updated successfully": user})
     } catch (error) {
-        console.error(`Error in loginUser: ${error.message}`);
-        new ApiError(500, `Error in logging in user: ${error.message}`)
+        console.error(`Error in updating User: ${error.message}`);
+        return res.status(500).json({ message: "Error in updating profilepic of user", error: error.message });
     }
 }
 const getUser=async(req,res)=>{
@@ -163,7 +169,7 @@ const getUser=async(req,res)=>{
         return res.status(200).json(user)
     } catch (error) {
         console.log("error in get user ",error.message);
-        new ApiError(500,`Error in get user details :${error.message}`)
+        return res.status(500).json({ message: "Error in get user", error: error.message });
     }
 }
 export { loginUser, signUpUser,updateUser,logoutUser,updateProfilePic,getUser };

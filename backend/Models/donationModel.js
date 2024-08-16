@@ -24,6 +24,8 @@ const DonationSchema = mongoose.Schema({
     required:true,
     ref: "Campaign",
   },
+},{
+  timestamps: true
 });
 
 const Donation = mongoose.model("Donation", DonationSchema);

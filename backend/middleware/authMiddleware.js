@@ -6,7 +6,7 @@ const verifyJwt=async(req,res,next)=>{
         //  console.log(token);
         const decodedToken=jwt.verify(token,process.env.JWT_SECRET)
         const user=await User.findOne({_id:decodedToken._id}).select('-password')
-        console.log(user);
+        // console.log(user);
         
         if (!user) {   
             return  new Error(401, "Invalid Access Token")

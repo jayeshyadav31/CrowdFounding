@@ -35,7 +35,7 @@ const createDonation = async (req, res) => {
         res.status(201).json(savedDonation);
     } catch (error) {
         console.error('Error creating donation:', error);
-        res.status(400).json({ message: error.message });
+        res.status(500).json({'error creating donation': error.message });
     }
 };
 
@@ -52,8 +52,18 @@ const getDonationDetails = async (req, res) => {
         res.status(200).json(donation);
     } catch (error) {
         console.error('Error fetching donation details:', error);
-        res.status(400).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
+const getDonationByUser=async(req,res)=>{
+    try {
+        const userId=req.user._id
+        const donation=await Donation.find({userId:userId})
+        return res.status(200).json(donation)
+    } catch (error) {
+        console.error('Error fetching donations by user:', error);
+        res.status(500).json({ message: error.message });
+    }
+}
 
-export { createDonation, getDonationDetails };
+export { createDonation, getDonationDetails,getDonationByUser };

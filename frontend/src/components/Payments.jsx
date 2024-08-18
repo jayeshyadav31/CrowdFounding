@@ -13,6 +13,7 @@ function Payments() {
       try {
         const res = await fetch('/api/donation/byUser');
         const data = await res.json();
+        const sortedDonations = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setDonations(data);
       } catch (error) {
         console.log('Error in fetching donations by user:', error);

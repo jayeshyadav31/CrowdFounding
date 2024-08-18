@@ -27,6 +27,7 @@ const CampaignDetailPage = () => {
     const handleProceed=()=>{
         if(amt>maxDonationAmount){
             toast.error(`You can pay maximum ${maxDonationAmount}`)
+            return 
         }
         setAmount(amt);
         navigate(`/campaign/payment/${id}`)

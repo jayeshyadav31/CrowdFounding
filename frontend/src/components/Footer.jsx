@@ -16,9 +16,7 @@ function Footer() {
                         <h2 className="text-lg font-bold mb-4">Quick Links</h2>
                         <ul className="text-gray-400">
                             <li className="mb-2"><a href="/about">About Us</a></li>
-                            <li className="mb-2"><a href="/how-it-works">How It Works</a></li>
                             <li className="mb-2"><a href="/campaigns">Browse Campaigns</a></li>
-                            <li className="mb-2"><a href="/faq">FAQs</a></li>
                             <li className="mb-2"><a href="/contact">Contact Us</a></li>
                         </ul>
                     </div>

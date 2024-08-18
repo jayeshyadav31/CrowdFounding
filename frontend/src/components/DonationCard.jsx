@@ -14,16 +14,16 @@ function DonationCard({ donation }) {
       </div>
 
       <div className="flex-1 sm:text-left text-center mb-2 sm:mb-0">
-        <p className="text-gray-800 font-medium truncate">{donation?.transactionID.substring(0, 30)}</p>
+        <p className="text-gray-800 font-medium truncate">{donation?.transactionID.substring(0, 20)}</p>
       </div>
 
       <div className="flex-1 sm:text-left text-center mb-2 sm:mb-0">
         <p
           className={`text-sm font-bold ${
-            donation?.transactionComplete === 'true' ? 'text-green-600' : 'text-red-600'
+            donation?.transactionComplete === true? 'text-green-600' : 'text-red-600'
           }`}
         >
-          {donation?.transactionComplete === 'true' ? 'Completed' : 'Failed'}
+          {donation?.transactionComplete === true ? 'Completed' : 'Failed'}
         </p>
       </div>
 

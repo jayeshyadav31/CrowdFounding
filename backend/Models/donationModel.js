@@ -17,7 +17,8 @@ const DonationSchema = mongoose.Schema({
   },
   transactionID: {
     type: String,
-    default: "",
+    unique: true,
+    required:true,
   },
   campaignId: {
     type: Schema.Types.ObjectId,

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import DonationCard from './DonationCard';
+import { useNavigate } from 'react-router-dom';
 
 function Payments() {
   const { authUser } = useAuthContext();
   const [donations, setDonations] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const navigate=useNavigate()
   useEffect(() => {
     const getDonations = async () => {
       setLoading(true);
@@ -15,6 +16,7 @@ function Payments() {
         const data = await res.json();
         const sortedDonations = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setDonations(data);
+        
       } catch (error) {
         console.log('Error in fetching donations by user:', error);
       } finally {

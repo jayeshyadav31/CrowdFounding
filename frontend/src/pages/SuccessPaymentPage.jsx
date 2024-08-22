@@ -101,7 +101,7 @@ const SuccessPaymentPage = () => {
               <div className="space-y-4">
                 <div className='flex justify-between items-center'>
                   <p className='text-gray-600'>Payment ID:</p>
-                  <p className='text-gray-800 font-medium'>{paymentInfo.id}</p>
+                  <p className='text-gray-800 font-medium'>{paymentInfo?.id.substring(0,30)}</p>
                 </div>
                 <div className='flex justify-between items-center'>
                   <p className='text-gray-600'>Amount:</p>

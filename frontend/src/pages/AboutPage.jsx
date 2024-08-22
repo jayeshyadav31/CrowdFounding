@@ -1,13 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AboutPage = () => {
+  const navigate=useNavigate()
   return (
     <div className="about-us-page">
       
       <section className="hero-section text-center bg-gray-100 py-10">
         <h1 className="text-4xl font-bold mb-4">Empowering Dreams, One Project at a Time</h1>
         <p className="text-lg mb-6">Crowdfunding for a brighter future, connecting creators with supporters across the globe.</p>
-        {/* <button className="bg-blue-500 text-white px-6 py-2 rounded">Explore Projects</button> */}
       </section>
 
       <section className="mission-section text-center py-10">
@@ -49,7 +50,6 @@ const AboutPage = () => {
         </p>
       </section>
 
-      {/* Meet the Team */}
       <section className="team-section text-center py-10">
         <h2 className="text-3xl font-semibold mb-4">Meet the Team</h2>
         <div className="team-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -60,7 +60,6 @@ const AboutPage = () => {
             <p className="text-gray-500 text-sm mt-2">Jayesh is the visionary behind Crowdfounding, with a passion 
               for innovation and helping creators succeed.</p>
           </div>
-          {/* Add more team members here */}
         </div>
       </section>
 
@@ -70,7 +69,7 @@ const AboutPage = () => {
           Ready to bring your project to life? Join our community of creators and backers today, and let's make your dreams 
           a reality. Whether you're looking to fund a new idea or support a project, CrowdFounding is here to help.
         </p>
-        <button className="bg-white text-blue-500 px-6 py-2 rounded">Start a Campaign</button>
+        <button className="bg-white text-blue-500 px-6 py-2 rounded" onClick={()=>{navigate('/create')}}>Start a Campaign</button>
       </section>
     </div>
   );

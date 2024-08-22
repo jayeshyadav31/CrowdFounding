@@ -15,6 +15,8 @@ import CampaignDetailPage from './pages/CampaignDetailPage'
 import PaymentPage from './pages/PaymentPage'
 import SuccessPaymentPage from './pages/SuccessPaymentPage'
 import FailurePaymentPage from './pages/FailurePaymentPage'
+import CreateCampaign from './pages/CreateCampaign'
+import PaymentDetails from './pages/PaymentDetails'
 function App() {
   const {authUser}=useAuthContext()
   return (
@@ -23,10 +25,13 @@ function App() {
         <Toaster/>
         <Header/>
         <Routes>
+       
           <Route path='/login' element={authUser?<Navigate to='/'/>:<LoginPage/>}/>
           <Route path='/signup' element={authUser?<Navigate to='/' />:<SignupPage/>} />         
           <Route path='/' element={authUser?<Homepage/>:<Navigate to={'/signup'} />} />
           <Route path='/protected/paymentConf' element={authUser? <SuccessPaymentPage/>:<Navigate to="/auth" /> } />
+          <Route path='/create' element={authUser?<CreateCampaign/>:<Navigate to={'/signup'} />} />
+          <Route path='/payment/info/:id' element={authUser?<PaymentDetails/>:<Navigate to={'/signup'} />} />
           <Route path='/cancel' element={authUser?<FailurePaymentPage/>:<Navigate to={'/signup'} />} />
           <Route path='/contact' element={authUser?<Contact/>:<Navigate to={'/signup'} />} />
           <Route path='/about' element={<AboutPage/>} />

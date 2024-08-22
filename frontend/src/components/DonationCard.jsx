@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 function DonationCard({ donation }) {
   const navigate = useNavigate();
-
+  console.log(donation);
+  
   return (
     <div
       className="flex flex-col sm:flex-row items-center cursor-pointer border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4 bg-white"
-      onClick={() => navigate(`/paymentDetails/${donation?.payment_id}`)}
+      onClick={() => navigate(`/payment/info/${donation?.transactionID}`)}
     >
       <div className="flex-1 sm:text-left text-center mb-2 sm:mb-0">
         <p className="text-gray-500">{donation?.createdAt.substring(0, 10)}</p>

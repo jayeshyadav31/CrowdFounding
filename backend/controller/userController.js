@@ -1,5 +1,6 @@
 import User from "../Models/userModel.js";
 import {uploadToCloudinary} from "../utils/cloudinary.js";
+import {v2 as cloudinary} from 'cloudinary'
 const signUpUser = async (req, res, next) => {
     try {
         const { username, email, password} = req.body;
@@ -148,7 +149,9 @@ const updateProfilePic =async(req,res)=>{
         // console.log(response.secure_url);
         
         const user=await User.findById(req.user._id)
-        
+        if(user.profilePic){
+            await cloudinary.uploader.destroy(user.profilePic.split("/").pop().split(".")[0]);
+        }
         user.profilePic=response.secure_url
         // console.log(user.profilePic);
         

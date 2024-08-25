@@ -54,7 +54,7 @@ function Card({ campaign }) {
                     <button
                         className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors duration-300"
                         onClick={(e) => {
-                            e.stopPropagation(); // Prevent triggering the onClick of the parent div
+                            e.stopPropagation(); 
                             navigate(`/campaign/${campaign._id}`);
                         }}
                     >

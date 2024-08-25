@@ -3,7 +3,7 @@ import { createCampaign, deleteCampaign, getAllCampaigns, getCampaign, updateCam
 import verifyJwt from '../middleware/authMiddleware.js';
 const router=Router()
 router.post('/create',verifyJwt,createCampaign);
-router.post('/update',verifyJwt,updateCampaign)
+router.post('/update/:id',verifyJwt,updateCampaign)
 router.get('/get/:id',verifyJwt,getCampaign)
 router.get('/getAll',verifyJwt,getAllCampaigns)
 router.delete('/delete',verifyJwt,deleteCampaign)

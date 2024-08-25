@@ -17,6 +17,7 @@ import SuccessPaymentPage from './pages/SuccessPaymentPage'
 import FailurePaymentPage from './pages/FailurePaymentPage'
 import CreateCampaign from './pages/CreateCampaign'
 import PaymentDetails from './pages/PaymentDetails'
+import UpdateCampaignPage from './pages/UpdateCampaignPage'
 function App() {
   const {authUser}=useAuthContext()
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/' element={authUser?<Homepage/>:<Navigate to={'/signup'} />} />
           <Route path='/protected/paymentConf' element={authUser? <SuccessPaymentPage/>:<Navigate to="/auth" /> } />
           <Route path='/create' element={authUser?<CreateCampaign/>:<Navigate to={'/signup'} />} />
+          <Route path='/campaign/update/:id' element={authUser?<UpdateCampaignPage/>:<Navigate to={'/signup'} />} />
           <Route path='/payment/info/:id' element={authUser?<PaymentDetails/>:<Navigate to={'/signup'} />} />
           <Route path='/cancel' element={authUser?<FailurePaymentPage/>:<Navigate to={'/signup'} />} />
           <Route path='/contact' element={authUser?<Contact/>:<Navigate to={'/signup'} />} />

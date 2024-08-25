@@ -17,6 +17,7 @@ const ThankYouNote = ({ donorName, amount, campaignName }) => {
   };
 
   return (
+    <>
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto" ref={noteRef}>
       <h2 className="text-2xl font-semibold text-center mb-4">Thank You!</h2>
       <p className="text-lg text-gray-700 text-center">
@@ -30,7 +31,8 @@ const ThankYouNote = ({ donorName, amount, campaignName }) => {
       <p className="text-lg text-gray-700 text-center mt-4">
         Your support is helping us make a real difference. Thank you for being part of this journey!
       </p>
-      <div className="text-center mt-6">
+    </div>
+    <div className="text-center mt-6">
         <button 
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
           onClick={handleDownloadPDF}
@@ -38,7 +40,7 @@ const ThankYouNote = ({ donorName, amount, campaignName }) => {
           Download PDF
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
